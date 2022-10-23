@@ -14,13 +14,17 @@ struct ExampleApp: App {
         WindowGroup {
             ContentView()
                 .task {
-                    await loadThemeModel()
+                    await ThemeLoader.loadThemeModel()
                 }
         }
     }
+}
 
-    func loadThemeModel() async {
-        guard let themeModel = try? Data.contentOfFile("Theme.json") else { return }
+struct ThemeLoader {
+    static let themeName = "Theme.json"
+
+    static func loadThemeModel() async {
+        guard let themeModel = try? Data.contentOfFile(themeName) else { return }
         try? ThemesManager.loadThemeModel(themeModel)
     }
 }

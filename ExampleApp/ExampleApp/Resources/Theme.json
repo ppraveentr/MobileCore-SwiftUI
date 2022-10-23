@@ -2,15 +2,20 @@
     "version": "1.0",
     "colors": {
         "white": "#FFFFFF",
-        "red": "#EE4B2B"
+        "red": "#EE4B2B",
+        "blue": "#004CFF"
     },
     "fonts": {
-        "subHeader": { "weight": "subheadline" }
+        "title": { "weight": "title" }
     },
     "styles": {
-        "TextRW": {
+        "TitleRW": {
             "forgroundColor": {"light": "red", "dark": "white"},
-            "font": "subHeader"
+            "font": "title"
+        },
+        "BodyBR": {
+            "forgroundColor": {"light": "blue", "dark": "red"},
+            "font": "body"
         }
     }
 }

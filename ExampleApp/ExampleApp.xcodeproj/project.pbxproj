@@ -13,7 +13,7 @@
 		DE28812228D566E6009E632C /* Theme.json in Resources */ = {isa = PBXBuildFile; fileRef = DE28812028D566E6009E632C /* Theme.json */; };
 		DE28812328D566E6009E632C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE28812128D566E6009E632C /* Assets.xcassets */; };
 		DE9F65F328D6BB2C00DA9989 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9F65F228D6BB2C00DA9989 /* NavigationContentView.swift */; };
-		DED6F28728D6A88C00AB7E5D /* ExThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6F28628D6A88C00AB7E5D /* ExThemeView.swift */; };
+		DED6F28728D6A88C00AB7E5D /* ExTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6F28628D6A88C00AB7E5D /* ExTextView.swift */; };
 		DEEE826828CED0E500238B13 /* MobileCoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = DEEE826728CED0E400238B13 /* MobileCoreUI */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +29,7 @@
 		DE28812128D566E6009E632C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE56F45428CEBF1100071E1F /* MobileCoreUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MobileCoreUI; path = ..; sourceTree = "<group>"; };
 		DE9F65F228D6BB2C00DA9989 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
-		DED6F28628D6A88C00AB7E5D /* ExThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExThemeView.swift; sourceTree = "<group>"; };
+		DED6F28628D6A88C00AB7E5D /* ExTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 		DED6F28828D6A89300AB7E5D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DED6F28628D6A88C00AB7E5D /* ExThemeView.swift */,
+				DED6F28628D6A88C00AB7E5D /* ExTextView.swift */,
 				DE9F65F228D6BB2C00DA9989 /* NavigationContentView.swift */,
 			);
 			path = Views;
@@ -217,7 +217,7 @@
 			files = (
 				DE9F65F328D6BB2C00DA9989 /* NavigationContentView.swift in Sources */,
 				DE00F3CE28C457C1009C7AE5 /* ContentView.swift in Sources */,
-				DED6F28728D6A88C00AB7E5D /* ExThemeView.swift in Sources */,
+				DED6F28728D6A88C00AB7E5D /* ExTextView.swift in Sources */,
 				DE00F3CC28C457C1009C7AE5 /* ExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
