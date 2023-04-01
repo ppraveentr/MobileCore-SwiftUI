@@ -27,8 +27,7 @@ public class ThemesManager: ObservableObject {
 /// Extentions to get 'ColorSchemeValue' based on style name
 extension ThemesManager {
 /// Call this function to get `ColorSchemeValue: Color`
-///
-/// - Parameters:
+/// Parameters:
 ///   - style: Name of the style to fetch
 /// - Returns: `Color`
     static func color(_ name: String) -> Color? {

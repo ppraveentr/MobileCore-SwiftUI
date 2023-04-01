@@ -28,7 +28,7 @@ import SwiftUI
 ///         .style("styleName")
 ///
 /// This shows the Text View: "Downtown Bus", using custom a modifier, renders the
-/// text in blue text with "Titlte" font.
+/// text in blue text with "Title" font.
 /// 
 public struct ThemeModifier: ViewModifier {
     let name: String
