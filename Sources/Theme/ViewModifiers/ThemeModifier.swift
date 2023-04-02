@@ -19,6 +19,7 @@ import SwiftUI
 ///             Text("Downtown Bus")
 ///                 .font(.title)
 ///                 .foregroundColor(Color.blue)
+///                 .backgroundColor(Color.blue)
 ///         }
 ///     }
 ///
@@ -40,6 +41,7 @@ public struct ThemeModifier: ViewModifier {
         return content
             .theme(themeStyle?.font)
             .theme(.foreground(color: themeStyle?.forgroundColor))
+            .theme(.background(color: themeStyle?.backgroundColor))
     }
 }
 

@@ -15,6 +15,7 @@ public class ThemeModel {
 
     struct UserStyle {
         var forgroundColor: ColorSchemeValue<Color>?
+        var backgroundColor: ColorSchemeValue<Color>?
         var font: ColorSchemeValue<Font>?
 
         init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
@@ -24,6 +25,10 @@ public class ThemeModel {
             if let fLight = font {
                 self.font = ColorSchemeValue(fLight, dark: nil)
             }
+        }
+
+        mutating func updateBackgroundColor(light: Color, dark: Color? = nil) {
+            self.backgroundColor = ColorSchemeValue(light, dark: dark)
         }
     }
 }
@@ -48,7 +53,12 @@ extension ThemeModel {
         let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""],
                                  model.colors[style.forgroundColor?.dark ?? ""])
         let font = model.fonts[style.font ?? ""]
-        return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
+        var userStyleValue = UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
+        if let bgLight = model.colors[style.background?.color?.light ?? ""],
+           let bgDark = model.colors[style.background?.color?.dark ?? ""] {
+            userStyleValue.updateBackgroundColor(light: bgLight, dark: bgDark)
+        }
+        return userStyleValue
     }
 }
 

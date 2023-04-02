@@ -25,6 +25,11 @@ struct ThemeStructure: Codable {
     struct UserStyle: Codable {
         var forgroundColor: ColorStyle?
         var font: String?
+        var background: BackgroundStyle?
+    }
+
+    struct BackgroundStyle: Codable {
+        var color: ColorStyle?
     }
 
     var colors: [String: String]?

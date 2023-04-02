@@ -25,6 +25,7 @@ struct ExTextView: View {
             Text("Font as 'title' in LightMode and 'headline' in DarkMode")
                 .theme(Constants.themeFont)
             Text("'Red' in LightMode and 'White' in DarkMode")
+                .padding()
                 .style(Constants.rwTitleStyle)
             Text("'Blue' in LightMode and 'Red' in DarkMode")
                 .style(Constants.brBodyStyle)

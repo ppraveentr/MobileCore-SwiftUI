@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,7 @@
 		DE00F3D328C457C3009C7AE5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE00F3D228C457C3009C7AE5 /* Preview Assets.xcassets */; };
 		DE28812228D566E6009E632C /* Theme.json in Resources */ = {isa = PBXBuildFile; fileRef = DE28812028D566E6009E632C /* Theme.json */; };
 		DE28812328D566E6009E632C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE28812128D566E6009E632C /* Assets.xcassets */; };
-		DE4E0FE529D8A1FA00CD1AA8 /* MobileTheme in Frameworks */ = {isa = PBXBuildFile; productRef = DE4E0FE429D8A1FA00CD1AA8 /* MobileTheme */; };
+		DE99544229D9196D00F0C2A8 /* MobileTheme in Frameworks */ = {isa = PBXBuildFile; productRef = DE99544129D9196D00F0C2A8 /* MobileTheme */; };
 		DE9F65F328D6BB2C00DA9989 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9F65F228D6BB2C00DA9989 /* NavigationContentView.swift */; };
 		DED6F28728D6A88C00AB7E5D /* ExTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6F28628D6A88C00AB7E5D /* ExTextView.swift */; };
 /* End PBXBuildFile section */
@@ -26,9 +26,9 @@
 		DE00F3FC28C48378009C7AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE28812028D566E6009E632C /* Theme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Theme.json; sourceTree = "<group>"; };
 		DE28812128D566E6009E632C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DE4E0FE329D8A14B00CD1AA8 /* MobileCore-SwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "MobileCore-SwiftUI"; path = ..; sourceTree = "<group>"; };
 		DE4E0FE629D910FB00CD1AA8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		DE99543F29D9131800F0C2A8 /* ExampleApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ExampleApp.xctestplan; sourceTree = "<group>"; };
+		DE99544029D9194200F0C2A8 /* MobileTheme */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MobileTheme; path = ..; sourceTree = "<group>"; };
 		DE9F65F228D6BB2C00DA9989 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
 		DED6F28628D6A88C00AB7E5D /* ExTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE4E0FE529D8A1FA00CD1AA8 /* MobileTheme in Frameworks */,
+				DE99544229D9196D00F0C2A8 /* MobileTheme in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 		DE00F3F628C457D5009C7AE5 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				DE4E0FE329D8A14B00CD1AA8 /* MobileCore-SwiftUI */,
+				DE99544029D9194200F0C2A8 /* MobileTheme */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -138,7 +138,7 @@
 			);
 			name = ExampleApp;
 			packageProductDependencies = (
-				DE4E0FE429D8A1FA00CD1AA8 /* MobileTheme */,
+				DE99544129D9196D00F0C2A8 /* MobileTheme */,
 			);
 			productName = ExampleApp;
 			productReference = DE00F3C828C457C1009C7AE5 /* ExampleApp.app */;
@@ -160,7 +160,7 @@
 				};
 			};
 			buildConfigurationList = DE00F3C328C457C1009C7AE5 /* Build configuration list for PBXProject "ExampleApp" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -357,6 +357,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,6 +387,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -424,7 +426,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DE4E0FE429D8A1FA00CD1AA8 /* MobileTheme */ = {
+		DE99544129D9196D00F0C2A8 /* MobileTheme */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MobileTheme;
 		};

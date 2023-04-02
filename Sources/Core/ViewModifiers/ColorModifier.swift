@@ -9,10 +9,13 @@ import SwiftUI
 
 public enum ColorModifierStyle {
     case foreground(color: ColorSchemeValue<Color>?)
+    case background(color: ColorSchemeValue<Color>?)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {
         case let .foreground(color):
+            return color?.value(colorScheme)
+        case let .background(color):
             return color?.value(colorScheme)
         }
     }
@@ -32,6 +35,8 @@ public struct ColorModifier: ViewModifier {
             switch themeValue {
             case .foreground where color != nil:
                 content.foregroundColor(color)
+            case .background where color != nil:
+                content.background(color)
             default:
                 content
             }
