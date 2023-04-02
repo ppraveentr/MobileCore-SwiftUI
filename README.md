@@ -1,15 +1,14 @@
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-SwiftUI-brightgreen.svg?style=flat)](https://developer.apple.com/xcode/swiftui)
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/ppraveentr/MobileCoreUI)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ppraveentr/MobileTheme)
 
-[![Build Status](https://github.com/ppraveentr/MobileCoreUI/actions/workflows/on-push.yml/badge.svg)](https://github.com/ppraveentr/MobileCoreUI/actions/workflows/on-push.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ppraveentr_MobileCoreUI&metric=alert_status)](https://sonarcloud.io/project/overview?id=ppraveentr_MobileCoreUI)
+[![Build Status](https://github.com/ppraveentr/MobileTheme/actions/workflows/on-push.yml/badge.svg)](https://github.com/ppraveentr/MobileTheme/actions/workflows/on-push.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ppraveentr_MobileTheme&metric=alert_status)](https://sonarcloud.io/project/overview?id=ppraveentr_MobileTheme)
 
 
-# MobileCoreUI
+# MobileTheme
 
-## Theme - Submoudle of MobileCoreUI
 A way to organize and manage style across the application dynamically (dark and light mode).
 
 ### Usage
@@ -55,5 +54,5 @@ Configure the SwiftUI Text style as below:
 }
 ```
 
-![MobileCoreUI-Color-Font](https://user-images.githubusercontent.com/15041699/197370343-8bd27dcc-9f04-4b99-afdd-64b0030c08b9.gif)
+![MobileTheme-Color-Font](https://user-images.githubusercontent.com/15041699/197370343-8bd27dcc-9f04-4b99-afdd-64b0030c08b9.gif)
 

@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "B6694100-2878-4C62-AEEA-4B8701F20B92",
+      "name" : "MobileTheme-TestConfig",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "ThemeTests",
+        "name" : "ThemeTests"
+      }
+    }
+  ],
+  "version" : 1
+}
