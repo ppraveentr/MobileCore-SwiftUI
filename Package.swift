@@ -4,10 +4,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "MobileCoreUI",
+    name: "MobileTheme",
     platforms: [.iOS(.v13), .macOS(.v10_15)],
     products: [
-        .library(name: "MobileCoreUI", targets: ["Theme", "Core"])
+        .library(name: "MobileTheme", targets: ["Theme", "Core"])
     ],
     dependencies: [
         // .package(url: "https://github.com/apple/swift-docc-plugin", branch: "main")

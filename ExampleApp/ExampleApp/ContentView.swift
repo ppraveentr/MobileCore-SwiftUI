@@ -14,7 +14,7 @@ struct ContentView: View {
                 NavigationContentView(title: "Dark/Light Mode Themes example") { ExTextView() }
             }
         }
-        .navigationTitle("MobileCoreUI")
+        .navigationTitle("Mobile Theme")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -1,6 +1,6 @@
 //
 //  Color+Extension.swift
-//  MobileCoreUI
+//  Mobile Core
 //
 //  Created by Praveen Prabhakar on 16/09/22.
 //
