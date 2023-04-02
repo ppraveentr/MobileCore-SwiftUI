@@ -29,10 +29,10 @@ extension ThemesManager {
 /// Call this function to get `ColorSchemeValue: Color`
 /// Parameters:
 ///   - style: Name of the style to fetch
-/// - Returns: `Color`
-    static func color(_ name: String) -> Color? {
-        Self.shared.themeModel?.colors[name]
-    }
+///   - Returns: `Color`
+///    static func color(_ name: String) -> Color? {
+///        Self.shared.themeModel?.colors[name]
+///    }
 
 /// Call this function to get `ColorSchemeValue: Font`
 ///

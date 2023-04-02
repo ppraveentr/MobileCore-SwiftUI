@@ -23,8 +23,20 @@ struct ThemeStructure: Codable {
     }
 
     struct UserStyle: Codable {
-        var forgroundColor: ColorStyle?
+        var forgroundColor: String?
         var font: String?
+        var background: BackgroundStyle?
+    }
+
+    struct BackgroundStyle: Codable {
+        var color: String?
+        var ignoringSafeArea: Bool?
+        var gradient: StyleGradient?
+    }
+
+    struct StyleGradient: Codable {
+        var colors: [String]
+        var locations: [CGFloat]?
     }
 
     var colors: [String: String]?

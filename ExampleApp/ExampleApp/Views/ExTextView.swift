@@ -24,9 +24,10 @@ struct ExTextView: View {
                 .theme(Constants.themeFont)
             Text("Font as 'title' in LightMode and 'headline' in DarkMode")
                 .theme(Constants.themeFont)
-            Text("'Red' in LightMode and 'White' in DarkMode")
+            Text("Text 'Black' in LightMode and 'White' in DarkMode")
+                .padding()
                 .style(Constants.rwTitleStyle)
-            Text("'Blue' in LightMode and 'Red' in DarkMode")
+            Text("Text 'Blue' in LightMode and 'Red' in DarkMode")
                 .style(Constants.brBodyStyle)
             Spacer()
         }

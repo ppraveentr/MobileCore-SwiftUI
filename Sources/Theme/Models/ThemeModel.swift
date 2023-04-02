@@ -9,22 +9,20 @@ import Core
 import SwiftUI
 
 public class ThemeModel {
-    var colors = [String: Color]()
+    var colors = [String: ColorSchemeValue<Color>]()
     var fonts = [String: Font]()
     var styles = [String: UserStyle]()
 
     struct UserStyle {
         var forgroundColor: ColorSchemeValue<Color>?
+        var backgroundColor: StyleBackground?
         var font: ColorSchemeValue<Font>?
+    }
 
-        init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
-            if let fcLight = fcLight {
-                self.forgroundColor = ColorSchemeValue(fcLight, dark: fcDark)
-            }
-            if let fLight = font {
-                self.font = ColorSchemeValue(fLight, dark: nil)
-            }
-        }
+    struct StyleBackground {
+        var color: ColorSchemeValue<Color>?
+        var ignoringSafeArea: Bool?
+        var gradient: ThemeStructure.StyleGradient?
     }
 }
 
@@ -45,10 +43,23 @@ extension ThemeModel {
     /// Generate ``ThemeModel/UserStyle`` based on ``ThemeStructure.UserStyle``
     private static
     func style(_ style: ThemeStructure.UserStyle, model: ThemeModel) -> UserStyle? {
-        let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""],
-                                 model.colors[style.forgroundColor?.dark ?? ""])
-        let font = model.fonts[style.font ?? ""]
-        return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
+        // Colors
+        let fgColor = model.colors[style.forgroundColor ?? ""]
+        let bgLight = model.colors[style.background?.color ?? ""]
+        // BackGround Style
+        let backgroundStyle = StyleBackground(
+            color: bgLight,
+            ignoringSafeArea: style.background?.ignoringSafeArea,
+            gradient: style.background?.gradient
+        )
+        // User Style Setup
+        var userStyleValue = UserStyle(forgroundColor: fgColor, backgroundColor: backgroundStyle)
+
+        // Fonts
+        if let font = model.fonts[style.font ?? ""] {
+            userStyleValue.font = ColorSchemeValue(font, dark: nil)
+        }
+        return userStyleValue
     }
 }
 
@@ -70,9 +81,17 @@ extension Font {
 
 /// Generate ``Color`` based on `hex color`
 extension Color {
-    static func style(_ name: String) -> Color? {
+    static func style(_ name: String) -> ColorSchemeValue<Color>? {
         if name.hasPrefix("#") {
-            return Color(hex: name)
+            let colorNames = name.components(separatedBy: ",,")
+            guard let light = colorNames.first else {
+                return nil
+            }
+            var colors = ColorSchemeValue<Color>(Color(hex: light))
+            if let dark = colorNames.last {
+                colors.dark = Color(hex: dark)
+            }
+            return colors
         }
         return nil
     }

@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+public extension String {
+    func getColor() -> Color {
+        Color(hex: self)
+    }
+}
+
 public extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

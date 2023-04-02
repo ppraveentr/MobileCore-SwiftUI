@@ -8,6 +8,14 @@
 import Core
 import SwiftUI
 
+public enum ViewState: String {
+    case normal, disabled, highlighted, selected
+
+    var value: String {
+        self == .normal ? "" : ":\(self.rawValue)"
+    }
+}
+
 /// A modifier that you apply to a view or another view modifier, producing a
 /// different version of the original value.
 ///
@@ -19,6 +27,7 @@ import SwiftUI
 ///             Text("Downtown Bus")
 ///                 .font(.title)
 ///                 .foregroundColor(Color.blue)
+///                 .backgroundColor(Color.blue)
 ///         }
 ///     }
 ///
@@ -32,14 +41,20 @@ import SwiftUI
 /// 
 public struct ThemeModifier: ViewModifier {
     let name: String
+    let viewState: ViewState
 
     @State private var themeStyle: ThemeModel.UserStyle?
 
     public func body(content: Content) -> some View {
-        DispatchQueue.main.async { themeStyle = ThemesManager.style(name) }
+        let value = "\(name)\(viewState.value)"
+        DispatchQueue.main.async {
+            themeStyle = ThemesManager.style(value)
+        }
+        let backGroundStyle = themeStyle?.backgroundColor
         return content
             .theme(themeStyle?.font)
             .theme(.foreground(color: themeStyle?.forgroundColor))
+            .theme(.background(color: backGroundStyle?.color, ignoreSafeArea: backGroundStyle?.ignoringSafeArea))
     }
 }
 
@@ -49,7 +64,7 @@ public extension View {
 /// - Parameters:
 ///   - name: StyleName for the element
 /// - Returns: Modified ``View`` that incorporates the view modifier.
-    func style(_ name: String) -> some View {
-        modifier(ThemeModifier(name: name))
+    func style(_ name: String, viewState: ViewState = .normal) -> some View {
+        modifier(ThemeModifier(name: name, viewState: viewState))
     }
 }
