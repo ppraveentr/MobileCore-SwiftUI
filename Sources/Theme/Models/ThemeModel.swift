@@ -9,7 +9,7 @@ import Core
 import SwiftUI
 
 public class ThemeModel {
-    var colors = [String: Color]()
+    var colors = [String: ColorSchemeValue<Color>]()
     var fonts = [String: Font]()
     var styles = [String: UserStyle]()
 
@@ -17,19 +17,6 @@ public class ThemeModel {
         var forgroundColor: ColorSchemeValue<Color>?
         var backgroundColor: ColorSchemeValue<Color>?
         var font: ColorSchemeValue<Font>?
-
-        init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
-            if let fcLight = fcLight {
-                self.forgroundColor = ColorSchemeValue(fcLight, dark: fcDark)
-            }
-            if let fLight = font {
-                self.font = ColorSchemeValue(fLight, dark: nil)
-            }
-        }
-
-        mutating func updateBackgroundColor(light: Color, dark: Color? = nil) {
-            self.backgroundColor = ColorSchemeValue(light, dark: dark)
-        }
     }
 }
 
@@ -50,13 +37,11 @@ extension ThemeModel {
     /// Generate ``ThemeModel/UserStyle`` based on ``ThemeStructure.UserStyle``
     private static
     func style(_ style: ThemeStructure.UserStyle, model: ThemeModel) -> UserStyle? {
-        let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""],
-                                 model.colors[style.forgroundColor?.dark ?? ""])
-        let font = model.fonts[style.font ?? ""]
-        var userStyleValue = UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
-        if let bgLight = model.colors[style.background?.color?.light ?? ""],
-           let bgDark = model.colors[style.background?.color?.dark ?? ""] {
-            userStyleValue.updateBackgroundColor(light: bgLight, dark: bgDark)
+        let fgColor = model.colors[style.forgroundColor ?? ""]
+        let bgLight = model.colors[style.background?.color ?? ""]
+        var userStyleValue = UserStyle(forgroundColor: fgColor, backgroundColor: bgLight)
+        if let font = model.fonts[style.font ?? ""] {
+            userStyleValue.font = ColorSchemeValue(font, dark: nil)
         }
         return userStyleValue
     }
@@ -80,9 +65,17 @@ extension Font {
 
 /// Generate ``Color`` based on `hex color`
 extension Color {
-    static func style(_ name: String) -> Color? {
+    static func style(_ name: String) -> ColorSchemeValue<Color>? {
         if name.hasPrefix("#") {
-            return Color(hex: name)
+            let colorNames = name.components(separatedBy: ",,")
+            guard let light = colorNames.first else {
+                return nil
+            }
+            var colors = ColorSchemeValue<Color>(Color(hex: light))
+            if let dark = colorNames.last {
+                colors.dark = Color(hex: dark)
+            }
+            return colors
         }
         return nil
     }
