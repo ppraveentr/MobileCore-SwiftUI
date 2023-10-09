@@ -10,7 +10,7 @@ import Theme
 
 struct ExTextView: View {
     enum Constants {
-        static var themeFont: ColorSchemeValue<Font> { .init(.largeTitle, dark: .headline) }
+        static var themeFont: Appearance<Font> { .init(.largeTitle, dark: .headline) }
         static let rwTitleStyle = "TitleRW"
         static let brBodyStyle = "BodyBR"
     }

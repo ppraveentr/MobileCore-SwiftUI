@@ -8,28 +8,48 @@
 import SwiftUI
 
 public class ThemeModel {
-    var colors = [String: ColorSchemeValue<Color>]()
+    var colors = [String: Appearance<Color>]()
     var fonts = [String: Font]()
     var styles = [String: UserStyle]()
 
     struct UserStyle {
-        var forgroundColor: ColorSchemeValue<Color>?
-        var backgroundColor: StyleBackground?
-        var font: ColorSchemeValue<Font>?
+        var forground: Appearance<Color>?
+        var background: StyleBackground?
+        var font: Appearance<Font>?
+        var border: StyleBorder?
+    }
+
+    struct StyleBorder {
+        var radius: [CGFloat]?
+        var thickness: CGFloat?
+        var color: Appearance<Color>?
+
+        static func create(_ borderStyle: ThemeJSONModel.BorderModel, model: ThemeModel) -> StyleBorder {
+            let boderColor = model.colors[borderStyle.color ?? ""]
+            return .init(radius: borderStyle.radius, thickness: borderStyle.thickness, color: boderColor)
+        }
     }
 
     struct StyleBackground {
-        var color: ColorSchemeValue<Color>?
+        var color: Appearance<Color>?
         var ignoringSafeArea: Bool?
-        var gradient: ThemeJSONStructure.StyleGradient?
-        var border: ThemeJSONStructure.StyleBorder?
+        var gradient: ThemeJSONModel.GradientModel?
+
+        static func create(_ style: ThemeJSONModel.UserStyleModel, model: ThemeModel) -> StyleBackground {
+            let bgLight = model.colors[style.background?.color ?? ""]
+            return .init(
+                color: bgLight,
+                ignoringSafeArea: style.background?.ignoringSafeArea,
+                gradient: style.background?.gradient
+            )
+        }
     }
 }
 
 /// Generate ``ThemeModel`` based on `json Data`
 extension ThemeModel {
     static func generateModel(_ jsonData: Data) throws -> ThemeModel {
-        let theme = try JSONDecoder().decode(ThemeJSONStructure.self, from: jsonData)
+        let theme = try JSONDecoder().decode(ThemeJSONModel.self, from: jsonData)
         let model = ThemeModel()
             // Generate Colors
         theme.colors?.forEach { model.colors[$0] = Color.style($1) }
@@ -42,22 +62,20 @@ extension ThemeModel {
 
     /// Generate ``ThemeModel/UserStyle`` based on ``ThemeStructure.UserStyle``
     private static
-    func style(_ style: ThemeJSONStructure.UserStyle, model: ThemeModel) -> UserStyle? {
-        // Colors
+    func style(_ style: ThemeJSONModel.UserStyleModel, model: ThemeModel) -> UserStyle? {
+            // Colors
         let fgColor = model.colors[style.forgroundColor ?? ""]
-        let bgLight = model.colors[style.background?.color ?? ""]
-        // BackGround Style
-        let backgroundStyle = StyleBackground(
-            color: bgLight,
-            ignoringSafeArea: style.background?.ignoringSafeArea,
-            gradient: style.background?.gradient
-        )
-        // User Style Setup
-        var userStyleValue = UserStyle(forgroundColor: fgColor, backgroundColor: backgroundStyle)
-
-        // Fonts
+            // StyleBackground
+        let styleBackground = StyleBackground.create(style, model: model)
+            // User Style Setup
+        var userStyleValue = UserStyle(forground: fgColor, background: styleBackground)
+            // StyleBorder
+        if let boder = style.background?.border {
+            userStyleValue.border = StyleBorder.create(boder, model: model)
+        }
+            // Fonts
         if let font = model.fonts[style.font ?? ""] {
-            userStyleValue.font = ColorSchemeValue(font, dark: nil)
+            userStyleValue.font = Appearance(font, dark: nil)
         }
         return userStyleValue
     }
@@ -65,7 +83,7 @@ extension ThemeModel {
 
 /// Generate ``Font`` based on ``ThemeStructure.FontStyle``
 extension Font {
-    static func style(_ style: ThemeJSONStructure.FontStyle) -> Font? {
+    static func style(_ style: ThemeJSONModel.FontModel) -> Font? {
             /// Generate ``Font`` based on StyleName ``Font/TextStyle``
         if let styleName = style.styleName,
             let font = Font.fromStyleName(styleName: styleName) {
@@ -81,13 +99,13 @@ extension Font {
 
 /// Generate ``Color`` based on `hex color`
 extension Color {
-    static func style(_ name: String) -> ColorSchemeValue<Color>? {
+    static func style(_ name: String) -> Appearance<Color>? {
         if name.hasPrefix("#") {
             let colorNames = name.components(separatedBy: ",,")
             guard let light = colorNames.first else {
                 return nil
             }
-            var colors = ColorSchemeValue<Color>(Color(hex: light))
+            var colors = Appearance<Color>(Color(hex: light))
             if let dark = colorNames.last {
                 colors.dark = Color(hex: dark)
             }

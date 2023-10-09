@@ -8,8 +8,8 @@
 import SwiftUI
 
 public enum ColorModifierStyle {
-    case foreground(color: ColorSchemeValue<Color>?)
-    case background(color: ColorSchemeValue<Color>?, ignoreSafeArea: Bool? = false)
+    case foreground(color: Appearance<Color>?)
+    case background(color: Appearance<Color>?, ignoreSafeArea: Bool? = false)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {

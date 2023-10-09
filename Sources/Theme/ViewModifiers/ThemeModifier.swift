@@ -41,11 +41,13 @@ public struct ThemeModifier: ViewModifier {
         DispatchQueue.main.async {
             themeStyle = ThemesManager.style(value)
         }
-        let backGroundStyle = themeStyle?.backgroundColor
+        let backGroundStyle = themeStyle?.background
         return content
             .theme(themeStyle?.font)
-            .theme(.foreground(color: themeStyle?.forgroundColor))
+            .theme(.foreground(color: themeStyle?.forground))
             .theme(.background(color: backGroundStyle?.color, ignoreSafeArea: backGroundStyle?.ignoringSafeArea))
+            .theme(themeStyle?.border)
+
     }
 }
 
