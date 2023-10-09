@@ -1,13 +1,13 @@
 //
 //  GradientModifier.swift
-//  Core
+//  Theme
 //
 //  Created by Praveen Prabhakar on 28/03/23.
 //
 
 import SwiftUI
 
-typealias StyleGradient = ThemeStyleModel.StyleBackground.StyleGradient
+typealias StyleGradient = ThemeJSONStructure.StyleGradient
 
 struct GradientModifier: ViewModifier {
 	var style: StyleGradient?
@@ -41,7 +41,7 @@ private extension GradientModifier {
 extension View {
 	/// Call this function to set the clip style
 	/// - Parameters:
-	///   - style: ``ThemeStyleModel.StyleBackground.StyleGradient`` value from themes
+	///   - style: ``ThemeStructure.StyleGradient`` value from themes
 	/// - Returns: Modified ``View`` that incorporates the view modifier.
 	func gradientStyle(_ gradientStyle: StyleGradient?) -> some View {
 		modifier(GradientModifier(style: gradientStyle))

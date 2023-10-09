@@ -1,6 +1,6 @@
 //
 //  EdgeInsets+Extension.swift
-//  Core
+//  Theme
 //
 //  Created by Praveen Prabhakar on 19/05/23.
 //

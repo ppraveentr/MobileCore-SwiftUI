@@ -1,6 +1,6 @@
 //
 //  ColorSchemeValue.swift
-//  Core
+//  Theme
 //
 //  Created by Praveen Prabhakar on 16/09/22.
 //

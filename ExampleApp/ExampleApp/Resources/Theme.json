@@ -21,7 +21,12 @@
             "forgroundColor": "black",
             "font": "title",
             "background": {
-                "color": "pink"
+                "color": "pink",
+                "border": {
+                    "color": "green",
+                    "radius": [10],
+                    "thickness": 20
+                }
             }
         },
         "BodyBR": {
