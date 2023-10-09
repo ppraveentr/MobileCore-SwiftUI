@@ -1,6 +1,6 @@
 //
 //  ColorModifier.swift
-//  Core
+//  Theme
 //
 //  Created by Praveen Prabhakar on 11/09/22.
 //
@@ -9,10 +9,13 @@ import SwiftUI
 
 public enum ColorModifierStyle {
     case foreground(color: ColorSchemeValue<Color>?)
+    case background(color: ColorSchemeValue<Color>?, ignoreSafeArea: Bool? = false)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {
         case let .foreground(color):
+            return color?.value(colorScheme)
+        case let .background(color, _):
             return color?.value(colorScheme)
         }
     }
@@ -32,6 +35,12 @@ public struct ColorModifier: ViewModifier {
             switch themeValue {
             case .foreground where color != nil:
                 content.foregroundColor(color)
+            case .background(_, let ignoreSafeArea) where color != nil:
+                if ignoreSafeArea == true {
+                    content.background(color.ignoresSafeArea(.all))
+                } else {
+                    content.background(color)
+                }
             default:
                 content
             }
