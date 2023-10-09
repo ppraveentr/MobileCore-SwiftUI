@@ -5,7 +5,6 @@
 //  Created by Praveen Prabhakar on 17/09/22.
 //
 
-import Core
 import SwiftUI
 import Theme
 

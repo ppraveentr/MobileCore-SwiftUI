@@ -1,5 +1,5 @@
 //
-//  ThemeStructure.swift
+//  ThemeJSONStructure.swift
 //  Theme
 //
 //  Created by Praveen Prabhakar on 16/09/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ThemeStructure: Codable {
+struct ThemeJSONStructure: Codable {
     struct FontStyle: Codable {
         var size: CGFloat?
         /// Based on ``Font/Weight``
@@ -32,6 +32,7 @@ struct ThemeStructure: Codable {
         var color: String?
         var ignoringSafeArea: Bool?
         var gradient: StyleGradient?
+        var border: StyleBorder?
     }
 
     struct StyleGradient: Codable {
@@ -39,7 +40,21 @@ struct ThemeStructure: Codable {
         var locations: [CGFloat]?
     }
 
+    struct StyleBorder: Codable {
+        var radius: [CGFloat]?
+        var thickness: Int?
+        var color: String?
+
+        var borderColor: Color? {
+            color?.getColor()
+        }
+    }
+
     var colors: [String: String]?
     var fonts: [String: FontStyle]?
     var styles: [String: UserStyle]?
+}
+
+enum Alignment: String, Codable {
+    case left, center, right
 }

@@ -5,16 +5,7 @@
 //  Created by Praveen Prabhakar on 11/09/22.
 //
 
-import Core
 import SwiftUI
-
-public enum ViewState: String {
-    case normal, disabled, highlighted, selected
-
-    var value: String {
-        self == .normal ? "" : ":\(self.rawValue)"
-    }
-}
 
 /// A modifier that you apply to a view or another view modifier, producing a
 /// different version of the original value.

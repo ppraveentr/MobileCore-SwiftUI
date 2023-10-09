@@ -1,6 +1,6 @@
 //
 //  FontModifier.swift
-//  Core
+//  Theme
 //
 //  Created by Praveen Prabhakar on 12/09/22.
 //
