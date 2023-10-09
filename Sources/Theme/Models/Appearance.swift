@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 public struct Appearance<T> {
-    public var light: T, dark: T?
-    var optionalDark: T { dark ?? light }
+    public var light: T
+    public var dark: T?
 
     public init(_ light: T, dark: T? = nil) {
         self.light = light
@@ -20,4 +20,6 @@ public struct Appearance<T> {
     public func value(_ colorScheme: ColorScheme) -> T {
         colorScheme == .light ? light : optionalDark
     }
+
+    private var optionalDark: T { dark ?? light }
 }

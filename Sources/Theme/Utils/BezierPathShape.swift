@@ -6,21 +6,7 @@
 //
 import SwiftUI
 
-/*
-  public struct BezierPathShape: Shape {
-	public var radius = CGFloat.infinity
-	public var corners = RectCorner.allCorners
-
-	public func path(in rect: CGRect) -> Path {
-		let path = UIBezierPath(roundedRect: rect,
-								byRoundingCorners: corners,
-								cornerRadii: CGSize(width: radius, height: radius))
-		return Path(path.cgPath)
-	}
-}
-*/
-
-// draws shape with specified rounded corners applying corner radius
+/// Draws shape with specified rounded corners applying corner radius
 struct BezierPathShape: Shape {
 
     var radius: CGFloat = .zero

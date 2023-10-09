@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BorderStyleModifier: ViewModifier {
-    var style: ThemeModel.StyleBorder?
+    var themeValue: ThemeModel.StyleBorder?
     @Environment(\.colorScheme) var colorScheme
 
 	func body(content: Content) -> some View {
-		if style != nil {
+		if themeValue != nil {
 			let shape = generateShape()
             if let color {
 				content
@@ -34,26 +34,26 @@ extension View {
 	///   - style: ``ThemeModel.StyleBorder`` value from themes
 	/// - Returns: Modified ``View`` that incorporates the view modifier.
 	func theme(_ borderStyle: ThemeModel.StyleBorder?) -> some View {
-		modifier(BorderStyleModifier(style: borderStyle))
+		modifier(BorderStyleModifier(themeValue: borderStyle))
 	}
 }
 
 private extension BorderStyleModifier {
     var radius: CGFloat {
-        let value = style?.radius?.first { $0 > 0.0 }
+        let value = themeValue?.radius?.first { $0 > 0.0 }
         return CGFloat(value ?? 0.0)
     }
 
     var thickness: CGFloat {
-        style?.thickness ?? 1.0
+        themeValue?.thickness ?? 1.0
     }
 
     var color: Color? {
-        style?.color?.value(colorScheme)
+        themeValue?.color?.value(colorScheme)
     }
 
     var corners: RectCorner {
-        RectCorner.corners(style?.radius)
+        RectCorner.corners(themeValue?.radius)
     }
 
     func generateShape() -> BezierPathShape {

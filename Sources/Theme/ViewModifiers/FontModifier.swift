@@ -27,11 +27,24 @@ public struct FontModifier: ViewModifier {
 }
 
 public extension View {
-/// Call this function to set the Color's based on ``ColorSchemeValue``
+/// Call this function to set the Color's based on ``Appearance``
 /// - Parameters:
 ///   - name: Configured `ligh` and `dark` mode value for `Font`
 /// - Returns: Modified ``View`` that incorporates the view modifier.
     func theme(_ font: Appearance<Font>?) -> some View {
         modifier(FontModifier(themeValue: font))
+    }
+}
+
+// MARK: Preview
+
+struct FontModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("""
+Sample Text Font:
+            headline in Light-Mode
+            caption in Dark-Mode
+""")
+            .theme(.init(Font.headline, dark: Font.caption))
     }
 }

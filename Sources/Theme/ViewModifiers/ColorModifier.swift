@@ -57,3 +57,17 @@ public extension View {
         modifier(ColorModifier(themeValue: color))
     }
 }
+
+    // MARK: Preview
+
+struct ColorModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("""
+Sample Color:
+            blue foreground Color
+            green background Color
+""")
+        .theme(.foreground(color: .init(.blue)))
+        .theme(.background(color: .init(.green), ignoreSafeArea: false))
+    }
+}
