@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct BorderStyleModifier: ViewModifier {
-	var style: ThemeJSONStructure.StyleBorder?
+    var themeValue: ThemeModel.StyleBorder?
+    @Environment(\.colorScheme) var colorScheme
 
 	func body(content: Content) -> some View {
-		if style != nil {
+		if themeValue != nil {
 			let shape = generateShape()
-			if let color, let thickness {
+            if let color {
 				content
-					.background(shape.stroke(color, lineWidth: thickness))
-					.clipShape(shape)
+                    .clipShape(shape)
+                    .background(shape.stroke(color, lineWidth: thickness))
 			} else {
 				content
 					.clipShape(shape)
@@ -30,51 +31,29 @@ struct BorderStyleModifier: ViewModifier {
 extension View {
 	/// Call this function to set the clip style
 	/// - Parameters:
-	///   - style: ``ThemeStructure.StyleBorder`` value from themes
+	///   - style: ``ThemeModel.StyleBorder`` value from themes
 	/// - Returns: Modified ``View`` that incorporates the view modifier.
-	func borderStyle(_ borderStyle: ThemeJSONStructure.StyleBorder?) -> some View {
-		modifier(BorderStyleModifier(style: borderStyle))
+	func theme(_ borderStyle: ThemeModel.StyleBorder?) -> some View {
+		modifier(BorderStyleModifier(themeValue: borderStyle))
 	}
 }
 
 private extension BorderStyleModifier {
     var radius: CGFloat {
-        let value = style?.radius?.first { $0 > 0.0 }
+        let value = themeValue?.radius?.first { $0 > 0.0 }
         return CGFloat(value ?? 0.0)
     }
 
-    var corners: RectCorner {
-        guard let radiusList = style?.radius, radiusList.count == 4 else {
-            return .allCorners
-        }
-        var corners = [RectCorner]()
-        if radiusList[0] > 0.0 {
-            corners.append(.topLeft)
-        }
-        if radiusList[1] > 0.0 {
-            corners.append(.topRight)
-        }
-        if radiusList[2] > 0.0 {
-            corners.append(.bottomLeft)
-        }
-        if radiusList[3] > 0.0 {
-            corners.append(.bottomRight)
-        }
-        return RectCorner(corners)
-    }
-
-    var thickness: CGFloat? {
-        guard let thickness = style?.thickness else {
-            return nil
-        }
-        return CGFloat(thickness)
+    var thickness: CGFloat {
+        themeValue?.thickness ?? 1.0
     }
 
     var color: Color? {
-        guard let color = style?.borderColor else {
-            return nil
-        }
-        return color
+        themeValue?.color?.value(colorScheme)
+    }
+
+    var corners: RectCorner {
+        RectCorner.corners(themeValue?.radius)
     }
 
     func generateShape() -> BezierPathShape {
@@ -85,19 +64,19 @@ private extension BorderStyleModifier {
 // MARK: Preview
 
 struct BorderStyleModifier_Previews: PreviewProvider {
-	static let cancelStyle: ThemeJSONStructure.StyleBorder = {
-		var syle = ThemeJSONStructure.StyleBorder()
+	static let cancelStyle: ThemeModel.StyleBorder = {
+		var syle = ThemeModel.StyleBorder()
 		syle.radius = [8]
-		syle.color = "#EE2C4A"
-		syle.thickness = 20
+        syle.color = .init("#EE2C4A".getColor())
+		syle.thickness = 2
 		return syle
 	}()
 
-	static let doneStyle: ThemeJSONStructure.StyleBorder = {
-		var syle = ThemeJSONStructure.StyleBorder()
+	static let doneStyle: ThemeModel.StyleBorder = {
+		var syle = ThemeModel.StyleBorder()
 		syle.radius = [10]
-		syle.color = "#F9DAE0"
-		syle.thickness = 200
+        syle.color = .init("#F9DAE0".getColor())
+		syle.thickness = 2
 		return syle
 	}()
 
@@ -107,12 +86,12 @@ struct BorderStyleModifier_Previews: PreviewProvider {
 				print("")
 			}.padding()
 				.theme(.background(color: .init(.yellow, dark: .blue)))
-				.borderStyle(cancelStyle)
+				.theme(cancelStyle)
 
 			Button("Done") {
 				print("")
 			}.padding()
-				.borderStyle(doneStyle)
+				.theme(doneStyle)
 		}
 	}
 }

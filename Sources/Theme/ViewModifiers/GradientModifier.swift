@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-typealias StyleGradient = ThemeJSONStructure.StyleGradient
+typealias StyleGradient = ThemeJSONModel.GradientModel
 
 struct GradientModifier: ViewModifier {
 	var style: StyleGradient?

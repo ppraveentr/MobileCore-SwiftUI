@@ -8,8 +8,8 @@
 import SwiftUI
 
 public enum ColorModifierStyle {
-    case foreground(color: ColorSchemeValue<Color>?)
-    case background(color: ColorSchemeValue<Color>?, ignoreSafeArea: Bool? = false)
+    case foreground(color: Appearance<Color>?)
+    case background(color: Appearance<Color>?, ignoreSafeArea: Bool? = false)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {
@@ -55,5 +55,19 @@ public extension View {
 /// - Returns: Modified ``View`` that incorporates modifier.
     func theme(_ color: ColorModifierStyle) -> some View {
         modifier(ColorModifier(themeValue: color))
+    }
+}
+
+    // MARK: Preview
+
+struct ColorModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("""
+Sample Color:
+            blue foreground Color
+            green background Color
+""")
+        .theme(.foreground(color: .init(.blue)))
+        .theme(.background(color: .init(.green), ignoreSafeArea: false))
     }
 }

@@ -10,7 +10,7 @@ import Theme
 
 struct ExTextView: View {
     enum Constants {
-        static var themeFont: ColorSchemeValue<Font> { .init(.largeTitle, dark: .headline) }
+        static var themeFont: Appearance<Font> { .init(.largeTitle, dark: .headline) }
         static let rwTitleStyle = "TitleRW"
         static let brBodyStyle = "BodyBR"
     }
@@ -36,6 +36,8 @@ struct ExTextView: View {
         .navigationTitle("Themes - Dark/Light Mode")
     }
 }
+
+// MARK: Preview
 
 struct ExTextView_Previews: PreviewProvider {
     static var previews: some View {

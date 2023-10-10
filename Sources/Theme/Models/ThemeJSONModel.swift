@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct ThemeJSONStructure: Codable {
-    struct FontStyle: Codable {
+struct ThemeJSONModel: Codable {
+    struct FontModel: Codable {
         var size: CGFloat?
         /// Based on ``Font/Weight``
         var weight: String?
@@ -17,42 +17,38 @@ struct ThemeJSONStructure: Codable {
         var styleName: String?
     }
 
-    struct ColorStyle: Codable {
+    struct ColorModel: Codable {
         var light: String
         var dark: String?
     }
 
-    struct UserStyle: Codable {
+    struct UserStyleModel: Codable {
         var forgroundColor: String?
         var font: String?
-        var background: BackgroundStyle?
+        var background: BackgroundModel?
     }
 
-    struct BackgroundStyle: Codable {
+    struct BackgroundModel: Codable {
         var color: String?
         var ignoringSafeArea: Bool?
-        var gradient: StyleGradient?
-        var border: StyleBorder?
+        var gradient: GradientModel?
+        var border: BorderModel?
     }
 
-    struct StyleGradient: Codable {
+    struct GradientModel: Codable {
         var colors: [String]
         var locations: [CGFloat]?
     }
 
-    struct StyleBorder: Codable {
+    struct BorderModel: Codable {
         var radius: [CGFloat]?
-        var thickness: Int?
+        var thickness: CGFloat?
         var color: String?
-
-        var borderColor: Color? {
-            color?.getColor()
-        }
     }
 
     var colors: [String: String]?
-    var fonts: [String: FontStyle]?
-    var styles: [String: UserStyle]?
+    var fonts: [String: FontModel]?
+    var styles: [String: UserStyleModel]?
 }
 
 enum Alignment: String, Codable {
