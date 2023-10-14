@@ -47,7 +47,7 @@ public struct ThemeModifier: ViewModifier {
             .theme(.foreground(color: themeStyle?.forground))
             .theme(.background(color: backGroundStyle?.color, ignoreSafeArea: backGroundStyle?.ignoringSafeArea))
             .theme(themeStyle?.border)
-
+            .theme(themeStyle?.alignment)
     }
 }
 
