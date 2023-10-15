@@ -17,9 +17,10 @@ public class ThemeModel {
         var background: StyleBackground?
         var font: Appearance<Font>?
         var border: StyleBorder?
+        var alignment: ThemeJSONModel.AlignmentModel?
     }
 
-    struct StyleBorder {
+    public struct StyleBorder {
         var radius: [CGFloat]?
         var thickness: CGFloat?
         var color: Appearance<Color>?
@@ -30,7 +31,7 @@ public class ThemeModel {
         }
     }
 
-    struct StyleBackground {
+    public struct StyleBackground {
         var color: Appearance<Color>?
         var ignoringSafeArea: Bool?
         var gradient: ThemeJSONModel.GradientModel?
@@ -69,6 +70,7 @@ extension ThemeModel {
         let styleBackground = StyleBackground.create(style, model: model)
             // User Style Setup
         var userStyleValue = UserStyle(forground: fgColor, background: styleBackground)
+        userStyleValue.alignment = style.alignment
             // StyleBorder
         if let boder = style.background?.border {
             userStyleValue.border = StyleBorder.create(boder, model: model)
@@ -100,17 +102,15 @@ extension Font {
 /// Generate ``Color`` based on `hex color`
 extension Color {
     static func style(_ name: String) -> Appearance<Color>? {
-        if name.hasPrefix("#") {
-            let colorNames = name.components(separatedBy: ",,")
-            guard let light = colorNames.first else {
-                return nil
-            }
-            var colors = Appearance<Color>(Color(hex: light))
-            if let dark = colorNames.last {
-                colors.dark = Color(hex: dark)
-            }
-            return colors
+        guard  name.hasPrefix("#") else { return nil }
+        let colorNames = name.components(separatedBy: ",,")
+        guard let light = colorNames.first else {
+            return nil
         }
-        return nil
+        var colors = Appearance<Color>(Color(hex: light))
+        if let dark = colorNames.last {
+            colors.dark = Color(hex: dark)
+        }
+        return colors
     }
 }

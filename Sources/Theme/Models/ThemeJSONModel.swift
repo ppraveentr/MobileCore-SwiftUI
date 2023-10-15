@@ -26,6 +26,7 @@ struct ThemeJSONModel: Codable {
         var forgroundColor: String?
         var font: String?
         var background: BackgroundModel?
+        var alignment: AlignmentModel?
     }
 
     struct BackgroundModel: Codable {
@@ -46,11 +47,22 @@ struct ThemeJSONModel: Codable {
         var color: String?
     }
 
+    enum AlignmentModel: String, Codable {
+        case left, center, right
+
+        var textAlignment: TextAlignment {
+            switch self {
+            case .left:
+                return .leading
+            case .center:
+                return .center
+            case .right:
+                return .trailing
+            }
+        }
+    }
+
     var colors: [String: String]?
     var fonts: [String: FontModel]?
     var styles: [String: UserStyleModel]?
-}
-
-enum Alignment: String, Codable {
-    case left, center, right
 }

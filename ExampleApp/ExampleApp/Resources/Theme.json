@@ -19,12 +19,13 @@
     "styles": {
         "TitleRW": {
             "forgroundColor": "black",
+            "alignment": "center",
             "font": "title",
             "background": {
                 "color": "pink",
                 "border": {
                     "color": "green",
-                    "radius": [10],
+                    "radius": [10,0,0,10],
                     "thickness": 2
                 }
             }

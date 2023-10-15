@@ -14,7 +14,7 @@ struct ExampleApp: App {
         WindowGroup {
             ContentView()
                 .task {
-                    await ThemeLoader.loadThemeModel()
+                    await ThemeLoader.setupApplicationTheme()
                 }
         }
     }
@@ -23,8 +23,8 @@ struct ExampleApp: App {
 struct ThemeLoader {
     static let themeName = "Theme.json"
 
-    static func loadThemeModel() async {
+    static func setupApplicationTheme() async {
         guard let themeModel = try? Data.contentOfFile(themeName) else { return }
-        try? ThemesManager.loadThemeModel(themeModel)
+        try? ThemesManager.setupApplicationTheme(themeModel)
     }
 }
