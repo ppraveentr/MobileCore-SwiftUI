@@ -24,9 +24,9 @@ extension View {
     /// Call this function to set the style for the elements by using the current body
     /// of the caller that will have the modifier applied to it.
     /// - Parameters:
-    ///   - name: StyleName for the element
+    ///   - aligment: ``ThemeJSONModel.AlignmentModel`` for the element
     /// - Returns: Modified ``View`` that incorporates the view modifier.
     func theme(_ aligment: ThemeJSONModel.AlignmentModel?) -> some View {
-        modifier(AlignmentModifier(themeValue: aligment))
+        return modifier(AlignmentModifier(themeValue: aligment))
     }
 }

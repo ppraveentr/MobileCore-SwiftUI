@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct BorderStyleModifier: ViewModifier {
+public struct BorderStyleModifier: ViewModifier {
     var themeValue: ThemeModel.StyleBorder?
     @Environment(\.colorScheme) var colorScheme
 
-	func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
 		if themeValue != nil {
 			let shape = generateShape()
             if let color {
@@ -28,7 +28,7 @@ struct BorderStyleModifier: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	/// Call this function to set the clip style
 	/// - Parameters:
 	///   - style: ``ThemeModel.StyleBorder`` value from themes

@@ -20,7 +20,7 @@ public class ThemeModel {
         var alignment: ThemeJSONModel.AlignmentModel?
     }
 
-    struct StyleBorder {
+    public struct StyleBorder {
         var radius: [CGFloat]?
         var thickness: CGFloat?
         var color: Appearance<Color>?
@@ -31,7 +31,7 @@ public class ThemeModel {
         }
     }
 
-    struct StyleBackground {
+    public struct StyleBackground {
         var color: Appearance<Color>?
         var ignoringSafeArea: Bool?
         var gradient: ThemeJSONModel.GradientModel?
