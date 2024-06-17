@@ -38,13 +38,11 @@ public extension View {
 
 // MARK: Preview
 
-struct FontModifier_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("""
+#Preview {
+    Text("""
 Sample Text Font:
             headline in Light-Mode
             caption in Dark-Mode
 """)
-            .theme(.init(Font.headline, dark: Font.caption))
-    }
+    .theme(.init(Font.headline, dark: Font.caption))
 }
