@@ -58,16 +58,14 @@ public extension View {
     }
 }
 
-    // MARK: Preview
+// MARK: Preview
 
-struct ColorModifier_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("""
+#Preview {
+    Text("""
 Sample Color:
             blue foreground Color
             green background Color
 """)
-        .theme(.foreground(color: .init(.blue)))
-        .theme(.background(color: .init(.green), ignoreSafeArea: false))
-    }
+    .theme(.foreground(color: .init(.blue)))
+    .theme(.background(color: .init(.green), ignoreSafeArea: false))
 }

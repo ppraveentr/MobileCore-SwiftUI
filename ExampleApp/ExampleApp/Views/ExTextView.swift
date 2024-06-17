@@ -39,11 +39,9 @@ struct ExTextView: View {
 
 // MARK: Preview
 
-struct ExTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExTextView()
-            .task {
-                await ThemeLoader.setupApplicationTheme()
-            }
-    }
+#Preview {
+    ExTextView()
+        .task {
+            await ThemeLoader.setupApplicationTheme()
+        }
 }
