@@ -10,3 +10,4 @@ fastlane/report.xml
 *.xcuserstate
 *.resolved
 reports/**
+build/*
